@@ -3,6 +3,7 @@ import TOC from "./components/TOC";
 import Content from "./components/Content";
 import Subject from "./components/Subject";
 import './App.css';
+import { findAllByPlaceholderText } from "@testing-library/react";
 
 class App extends Component {
   //render보다 먼저 실행
@@ -33,7 +34,16 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Subject title="Web" sub="Welcome to React tutorial!"></Subject>
+        {/* <Subject title="Web" sub="Welcome to React tutorial!"></Subject> */}
+        <header>
+              <h1><a href="/" onClick={function(e) {
+                console.log(e);
+                e.preventDefault();
+                //debugger;
+                //alert("hi");
+              }}>{this.state.subject.title}</a></h1>
+              {this.state.subject.sub}
+          </header>
         <TOC data={this.state.contents}></TOC>
         <Content title={_title} desc={_desc}></Content>
       </div>
