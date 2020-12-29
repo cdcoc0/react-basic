@@ -2,6 +2,7 @@ import React, {Component, PureComponent} from "react";
 import TOC from "./components/TOC";
 import Content from "./components/Content";
 import Subject from "./components/Subject";
+import Controls from "./components/Controls";
 import './App.css';
 import { findAllByPlaceholderText } from "@testing-library/react";
 
@@ -12,7 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       mode: "read",
-      selected_content_id: 2,
+      selected_content_id: 0,
       subject: {title: "WEB", sub: "world wide webb!"},
       welcome: {title: "welcome", desc: "Hey there!"},
       contents: [
@@ -69,6 +70,11 @@ class App extends Component {
             mode: "read",
             selected_content_id: Number(id)})
         }.bind(this)}></TOC>
+        <Controls onChangeMode={function(_mode) {
+          this.setState({
+            mode: _mode
+          });
+        }.bind(this)}></Controls>
         <Content title={_title} desc={_desc}></Content>
       </div>
     );
